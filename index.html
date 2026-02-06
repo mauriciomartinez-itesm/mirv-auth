@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Google Login Component</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        main {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #00d2ff;
+        }
+
+        #welcome-section {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 1rem 0;
+            border: 3px solid #00d2ff;
+        }
+    </style>
+
+    <!-- Load the component script -->
+    <script src="https://mirv.tec.mx/common/google-login-component.js"></script>
+</head>
+
+<body>
+
+    <!--<google-login id="my-login" background-image="splashscreen/bgImg.png" top-logo="splashscreen/logo_largo_blanco.png"
+        bottom-logo="splashscreen/MIRV_2020b.png"
+        footer-text="D.R. Instituto Tecnológico y de Estudios Superiores de Monterrey, México, {currentyear}"
+        allowed-domains="@tec.mx, @itesm.mx" credits-url="splashscreen/credits.json" experience-name="Test"
+        on-success="onLoginSuccess" ga-id="G-M7B2GZZ8BX" debug></google-login>-->
+
+    <google-login id="my-login" experience-name="Test">
+    </google-login>
+
+    <main id="main-content">
+        <section id="welcome-section">
+            <h1>Bienvenido</h1>
+            <img id="user-picture" class="user-pic" src="" alt="">
+            <p id="user-name"></p>
+            <p id="user-email"></p>
+            <p>Has ingresado exitosamente con un dominio permitido.</p>
+        </section>
+    </main>
+
+    <script>
+        // Global function called by the component's on-success attribute
+        function onLoginSuccess(detail) {
+            const userData = detail.user;
+            console.log('Login exitoso desde on-success attribute:', userData);
+
+            // Update UI
+            document.getElementById('user-picture').src = userData.picture;
+            document.getElementById('user-name').innerText = userData.name;
+            document.getElementById('user-email').innerText = userData.email;
+
+            // Show welcome section
+            document.getElementById('welcome-section').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
