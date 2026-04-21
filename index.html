@@ -60,7 +60,7 @@
     </style>
 
     <!-- Load the component script -->
-    <script src="https://mirv.tec.mx/common/google-login-component.js"></script>
+    <script src="splashscreen/google-login-component.js"></script>
 </head>
 
 <body>
@@ -71,7 +71,8 @@
         allowed-domains="@tec.mx, @itesm.mx" credits-url="splashscreen/credits.json" experience-name="Test"
         on-success="onLoginSuccess" ga-id="G-M7B2GZZ8BX" debug></google-login>-->
 
-    <google-login id="my-login" experience-name="Test">
+    <google-login id="my-login" experience-name="Test"
+        qualtrics-url="https://itesm.co1.qualtrics.com/jfe/form/SV_8GNvC9IvHTCW3vo?recurso=escape-room-megatendencias&tipo=rv&uf=el-rol-de-los-negocios-en-la-sociedad">
     </google-login>
 
     <main id="main-content">
